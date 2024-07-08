@@ -87,6 +87,34 @@ modalCloses.forEach((modalClose) =>{
     })   
 })
 
+
+// Get all service buttons and modals
+const serviceButtons = document.querySelectorAll('.services__button');
+const serviceModals = document.querySelectorAll('.service__modal');
+
+// Add event listener to each service button
+serviceButtons.forEach((button, index) => {
+  button.addEventListener('click', () => {
+    // Get the corresponding service modal
+    const serviceModal = serviceModals[index];
+
+    // Toggle the visibility of the service modal
+    serviceModal.classList.toggle('active');
+  });
+});
+
+// Add event listener to each service modal close button
+const serviceModalCloseButtons = document.querySelectorAll('.services__modal-close');
+serviceModalCloseButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    // Get the parent service modal
+    const serviceModal = button.parentElement.parentElement;
+
+    // Toggle the visibility of the service modal
+    serviceModal.classList.toggle('active');
+  });
+});
+
 /*==================== SCROLL SECTIONS ACTIVE LINK ====================*/
 const sections = document.querySelectorAll('section[id]')
 
