@@ -65,55 +65,118 @@ tabs.forEach(tab =>{
 })
 
 /*==================== SERVICES MODAL ====================*/
-const modalViews = document.querySelectorAll('.services__modal'),
-      modalBtns = document.querySelectorAll('.services__button'),
-      modalCloses = document.querySelectorAll('.services__modal-close')
 
-let modal = function(modalClick){
-    modalViews[modalClick].classList.add('active-modal')
+// Select all services buttons
+const servicesButtons = document.querySelectorAll('.services__button');
+
+// Select all services modals
+const graphicsDesignModal = document.getElementById('graphics-design-modal');
+const frontendDevelopmentModal = document.getElementById('frontend-development-modal');
+const backendDevelopmentModal = document.getElementById('backend-development-modal');
+
+// Select all services modal close buttons
+const servicesModalCloseButtons = document.querySelectorAll('.services__modal-close');
+
+// Function to open a modal
+function openModal(modal) {
+  modal.classList.add('active');
 }
 
-modalBtns.forEach((modalBtn, i) =>{
-    modalBtn.addEventListener('click', () =>{
-        modal(i)
-    })
-})
+// Function to close a modal
+function closeModal(modal) {
+  modal.classList.remove('active');
+}
 
-modalCloses.forEach((modalClose) =>{
-    modalClose.addEventListener('click', () =>{
-        modalViews.forEach((modalView) =>{ 
-            modalView.classList.remove('active-modal')
-        })
-    })   
-})
-
-
-// Get all service buttons and modals
-const serviceButtons = document.querySelectorAll('.services__button');
-const serviceModals = document.querySelectorAll('.service__modal');
-
-// Add event listener to each service button
-serviceButtons.forEach((button, index) => {
+// Add event listeners to services buttons
+servicesButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
-    // Get the corresponding service modal
-    const serviceModal = serviceModals[index];
-
-    // Toggle the visibility of the service modal
-    serviceModal.classList.toggle('active');
+    switch (index) {
+      case 0:
+        openModal(graphicsDesignModal);
+        break;
+      case 1:
+        openModal(frontendDevelopmentModal);
+        break;
+      case 2:
+        openModal(backendDevelopmentModal);
+        break;
+    }
   });
 });
 
-// Add event listener to each service modal close button
-const serviceModalCloseButtons = document.querySelectorAll('.services__modal-close');
-serviceModalCloseButtons.forEach((button) => {
+// Add event listeners to services modal close buttons
+servicesModalCloseButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
-    // Get the parent service modal
-    const serviceModal = button.parentElement.parentElement;
-
-    // Toggle the visibility of the service modal
-    serviceModal.classList.toggle('active');
+    switch (index) {
+      case 0:
+        closeModal(graphicsDesignModal);
+        break;
+      case 1:
+        closeModal(frontendDevelopmentModal);
+        break;
+      case 2:
+        closeModal(backendDevelopmentModal);
+        break;
+    }
   });
 });
+
+// Add event listener to window to close modal when clicked outside
+window.addEventListener('click', (e) => {
+  if (e.target.classList.contains('service__modal')) {
+    closeModal(e.target);
+  }
+});
+
+// const modalViews = document.querySelectorAll('.services__modal'),
+//       modalBtns = document.querySelectorAll('.services__button'),
+//       modalCloses = document.querySelectorAll('.services__modal-close')
+
+// let modal = function(modalClick){
+//     modalViews[modalClick].classList.add('active-modal')
+// }
+
+// modalBtns.forEach((modalBtn, i) =>{
+//     modalBtn.addEventListener('click', () =>{
+//         modal(i)
+//     })
+// })
+
+// modalCloses.forEach((modalClose) =>{
+//     modalClose.addEventListener('click', () =>{
+//         modalViews.forEach((modalView) =>{ 
+//             modalView.classList.remove('active-modal')
+//         })
+//     })   
+// })
+
+
+// // Get all service buttons and modals
+// const serviceButtons = document.querySelectorAll('.services__button');
+// const serviceModals = document.querySelectorAll('.service__modal');
+
+// // Add event listener to each service button
+// serviceButtons.forEach((button, index) => {
+//   button.addEventListener('click', () => {
+//     // Get the corresponding service modal
+//     const serviceModal = serviceModals[index];
+
+//     // Toggle the visibility of the service modal
+//     serviceModal.classList.toggle('active');
+//   });
+// });
+
+// // Add event listener to each service modal close button
+// const serviceModalCloseButtons = document.querySelectorAll('.services__modal-close');
+// serviceModalCloseButtons.forEach((button) => {
+//   button.addEventListener('click', () => {
+//     // Get the parent service modal
+//     const serviceModal = button.parentElement.parentElement;
+
+//     // Toggle the visibility of the service modal
+//     serviceModal.classList.toggle('active');
+//   });
+// });
 
 /*==================== SCROLL SECTIONS ACTIVE LINK ====================*/
 const sections = document.querySelectorAll('section[id]')
